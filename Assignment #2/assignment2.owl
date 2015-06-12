@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.assignment2.com/ontologies/pedometer.owl.#"
+     xml:base="http://www.assignment2.com/ontologies/pedometer.owl."
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.">
+        <rdfs:comment>A pedometer ontology that describes results from an activity recognition study performed using a wearable accelerometer.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasActivity -->
+
+    <owl:ObjectProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasActivity">
+        <rdfs:range rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+        <rdfs:domain rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasParticipant -->
+
+    <owl:ObjectProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasParticipant">
+        <rdfs:domain rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+        <rdfs:range rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasAccelerationValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasAccelerationValue">
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasSequentialEntryValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasSequentialEntryValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasXAccelerationValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasXAccelerationValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasAccelerationValue"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasYAccelerationValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasYAccelerationValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasAccelerationValue"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#hasZAccelerationValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#hasZAccelerationValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasAccelerationValue"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Activity -->
+
+    <owl:Class rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Activity">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#WalkingAndTalkingWhileSomeone"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#WorkingAtComputer"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#StandingUpWalkingAndGoingUpDownStairs"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#TalkingWhileStanding"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#GoingUpDownStairs"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Standing"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Walking"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Data -->
+
+    <owl:Class rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Data">
+        <owl:disjointWith rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry -->
+
+    <owl:Class rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Data"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasActivity"/>
+                        <owl:someValuesFrom rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasParticipant"/>
+                        <owl:someValuesFrom rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasSequentialEntryValue"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;integer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasXAccelerationValue"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;integer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasYAccelerationValue"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;integer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#hasZAccelerationValue"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;integer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Participant -->
+
+    <owl:Class rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Participant">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P04"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P03"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P05"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P02"/>
+                    <rdf:Description rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P01"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Person -->
+
+    <owl:Class rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry0P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry0P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+        <hasXAccelerationValue rdf:datatype="&xsd;integer">1502</hasXAccelerationValue>
+        <hasZAccelerationValue rdf:datatype="&xsd;integer">2153</hasZAccelerationValue>
+        <hasYAccelerationValue rdf:datatype="&xsd;integer">2215</hasYAccelerationValue>
+        <hasParticipant rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#P01"/>
+        <hasActivity rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#WorkingAtComputer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry1P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry1P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry2P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry2P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry3P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry3P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Entry4P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Entry4P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Entry"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#GoingUpDownStairs -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#GoingUpDownStairs">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#P01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P01">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#P02 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P02">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#P03 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P03">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#P04 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P04">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#P05 -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#P05">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Participant"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Standing -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Standing">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#StandingUpWalkingAndGoingUpDownStairs -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#StandingUpWalkingAndGoingUpDownStairs">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#TalkingWhileStanding -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#TalkingWhileStanding">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#Walking -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#Walking">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#WalkingAndTalkingWhileSomeone -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#WalkingAndTalkingWhileSomeone">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.assignment2.com/ontologies/pedometer.owl.#WorkingAtComputer -->
+
+    <owl:NamedIndividual rdf:about="http://www.assignment2.com/ontologies/pedometer.owl.#WorkingAtComputer">
+        <rdf:type rdf:resource="http://www.assignment2.com/ontologies/pedometer.owl.#Activity"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
