@@ -1,0 +1,330 @@
+@prefix : <http://www.semanticweb.org/mark/ontologies/2015/7/untitled-ontology-20#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.final.edu/swansonm2014/health.owl> .
+
+<http://www.final.edu/swansonm2014/health.owl> rdf:type owl:Ontology ;
+                                               
+                                               rdfs:comment "A health analysis ontology describing various health events." ;
+                                               
+                                               owl:imports rdf: ,
+                                                           rdfs: ,
+                                                           xsd: ,
+                                                           <http://www.w3.org/2006/time> ,
+                                                           <http://www.w3.org/XML/1998/namespace> .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.final.edu/swansonm2014/health.owl#hasActivity
+
+:hasActivity rdf:type owl:ObjectProperty ;
+             
+             rdfs:range :Activity ;
+             
+             rdfs:domain :HealthDay .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.final.edu/swansonm2014/health.owl#outdoorsEvent
+
+:outdoorsEvent rdf:type owl:DatatypeProperty ;
+               
+               rdfs:range xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#steps
+
+:steps rdf:type owl:DatatypeProperty ;
+       
+       rdfs:range xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#tvEvent
+
+:tvEvent rdf:type owl:DatatypeProperty ;
+         
+         rdfs:range xsd:nonNegativeInteger .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.final.edu/swansonm2014/health.owl#ActiveDay
+
+:ActiveDay rdf:type owl:Class ;
+           
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf ( :HealthDay
+                                                      [ rdf:type owl:Class ;
+                                                        owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty :outdoorsEvent ;
+                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                    owl:onDatatype xsd:integer ;
+                                                                                                    owl:withRestrictions ( [ xsd:minInclusive 3
+                                                                                                                           ]
+                                                                                                                         )
+                                                                                                  ]
+                                                                             ]
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty :steps ;
+                                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                    owl:onDatatype xsd:integer ;
+                                                                                                    owl:withRestrictions ( [ xsd:minExclusive 5000
+                                                                                                                           ]
+                                                                                                                         )
+                                                                                                  ]
+                                                                             ]
+                                                                           )
+                                                      ]
+                                                    )
+                               ] .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#Activity
+
+:Activity rdf:type owl:Class ;
+          
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:unionOf ( <http://www.w3.org/2006/time#Instant>
+                                              <http://www.w3.org/2006/time#Interval>
+                                            )
+                              ] .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#Day
+
+:Day rdf:type owl:Class ;
+     
+     rdfs:subClassOf <http://www.w3.org/2006/time#DurationDescription> ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#days> ;
+                       owl:cardinality "1"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#years> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#months> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#hours> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#minutes> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#seconds> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty <http://www.w3.org/2006/time#weeks> ;
+                       owl:cardinality "0"^^xsd:nonNegativeInteger
+                     ] .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#HealthDay
+
+:HealthDay rdf:type owl:Class .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#Hour
+
+:Hour rdf:type owl:Class ;
+      
+      rdfs:subClassOf <http://www.w3.org/2006/time#DurationDescription> .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#LazyDay
+
+:LazyDay rdf:type owl:Class ;
+         
+         owl:equivalentClass [ rdf:type owl:Class ;
+                               owl:intersectionOf ( :HealthDay
+                                                    [ rdf:type owl:Class ;
+                                                      owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :steps ;
+                                                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                  owl:onDatatype xsd:integer ;
+                                                                                                  owl:withRestrictions ( [ xsd:maxInclusive 5000
+                                                                                                                         ]
+                                                                                                                       )
+                                                                                                ]
+                                                                           ]
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :tvEvent ;
+                                                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                  owl:onDatatype xsd:integer ;
+                                                                                                  owl:withRestrictions ( [ xsd:minExclusive 2
+                                                                                                                         ]
+                                                                                                                       )
+                                                                                                ]
+                                                                           ]
+                                                                         )
+                                                    ]
+                                                  )
+                             ] ;
+         
+         rdfs:subClassOf :HealthDay .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#Outdoors
+
+:Outdoors rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Activity .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#TV
+
+:TV rdf:type owl:Class ;
+    
+    rdfs:subClassOf :Activity .
+
+
+
+###  http://www.w3.org/2000/01/rdf-schema#Container
+
+rdfs:Container rdfs:subClassOf rdfs:Datatype .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_19
+
+:_2015_07_19 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :outdoorsEvent "1"^^xsd:nonNegativeInteger ;
+             
+             :steps "175"^^xsd:nonNegativeInteger ;
+             
+             :tvEvent "9"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_20
+
+:_2015_07_20 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :tvEvent "2"^^xsd:nonNegativeInteger ;
+             
+             :outdoorsEvent "3"^^xsd:nonNegativeInteger ;
+             
+             :steps "5777"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_21
+
+:_2015_07_21 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :tvEvent "1"^^xsd:nonNegativeInteger ;
+             
+             :outdoorsEvent "4"^^xsd:nonNegativeInteger ;
+             
+             :steps "6609"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_22
+
+:_2015_07_22 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :outdoorsEvent "2"^^xsd:nonNegativeInteger ;
+             
+             :tvEvent "3"^^xsd:nonNegativeInteger ;
+             
+             :steps "4294"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_23
+
+:_2015_07_23 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :outdoorsEvent "2"^^xsd:nonNegativeInteger ,
+                            "4"^^xsd:nonNegativeInteger ;
+             
+             :steps "4094"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_24
+
+:_2015_07_24 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :tvEvent "0"^^xsd:nonNegativeInteger ;
+             
+             :outdoorsEvent "3"^^xsd:nonNegativeInteger ;
+             
+             :steps "5948"^^xsd:nonNegativeInteger .
+
+
+
+###  http://www.final.edu/swansonm2014/health.owl#_2015_07_25
+
+:_2015_07_25 rdf:type :HealthDay ,
+                      owl:NamedIndividual ;
+             
+             :outdoorsEvent "1"^^xsd:nonNegativeInteger ;
+             
+             :steps "2688"^^xsd:nonNegativeInteger ;
+             
+             :tvEvent "6"^^xsd:nonNegativeInteger .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+
